@@ -1,0 +1,27 @@
+android {
+    namespace = "com.example.flutter_speech_to_text"
+    compileSdk = 34  // Updated to latest
+
+    defaultConfig {
+        applicationId = "com.example.flutter_speech_to_text"
+        minSdkVersion 24  // Increased from 21 for better speech API support
+        targetSdkVersion 34
+        versionCode flutter.versionCode.toInteger()
+        versionName flutter.versionName
+        multiDexEnabled true  // Add if using many plugins
+
+        // Add these for speech recognition
+        manifestPlaceholders = [
+                speechRecognitionPermission: "android.permission.RECORD_AUDIO"
+        ]
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+            // Enable code shrinking for release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
